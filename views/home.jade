@@ -1,0 +1,12 @@
+extend layout
+include ./mixins/posts/excerpt.jade
+
+block content
+  - each post in posts
+    +postExcerpt(post)
+block sidebar
+  .widget
+    h3 Author
+    p
+      | Daniel Jimenez
+      | eleifend nibh porttitor. Ut in nulla enim.

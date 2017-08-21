@@ -1,0 +1,42 @@
+{
+  "name": "simple-blog-frontend-jade",
+  "version": "1.0.0",
+  "description": "Simple blog frontend with Jade",
+  "main": "server.js",
+  "scripts": {
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "watch": "babel-watch ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && npm run watch && nodemon dist/server.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "simple",
+    "blog",
+    "frontend",
+    "jade",
+    "nodejs"
+  ],
+  "author": "Daniel Jimenez <jimenezdaniel87@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "helmet": "^3.8.1",
+    "jade": "^1.11.0",
+    "moment": "^2.18.1",
+    "nodemon": "^1.11.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-watch": "^2.0.7",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.0",
+    "rimraf": "^2.6.1"
+  }
+}
