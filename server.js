@@ -1,5 +1,5 @@
-const config = require('./config');
-const app = require('./appBootstrap');
+import config from './config';
+import app from './appBootstrap';
 
 /**
  * @function initServer

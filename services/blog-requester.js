@@ -1,5 +1,5 @@
-const config = require('../config');
-const requesterFactory = require('../utils/requester-factory');
+import config from '../config';
+import requesterFactory from '../utils/requester-factory';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>

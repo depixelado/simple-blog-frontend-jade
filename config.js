@@ -1,4 +1,5 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
+
 const env = process.env;
 
 // Load environment vars
@@ -6,7 +7,7 @@ dotenv.load();
 
 const config = {
   app: {
-    port : env.PORT || 3030,
+    port: env.PORT || 3030,
     dateFormat: 'D-mm-Y',
   },
   posts: {
@@ -15,8 +16,8 @@ const config = {
   blogApi: {
     baseUrl: env.BLOG_API_BASE_URL,
     user: env.BLOG_API_USER,
-    password: env.BLOG_API_PASSWORD
-  }
+    password: env.BLOG_API_PASSWORD,
+  },
 };
 
 module.exports = config;

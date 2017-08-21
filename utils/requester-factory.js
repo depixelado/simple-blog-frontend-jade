@@ -1,4 +1,4 @@
-const request = require('request-promise-native');
+import request from 'request-promise-native';
 
 module.exports = function RequesterFactory(defaultOptions) {
   return function requester({ endPoint = '', options = {} }) {

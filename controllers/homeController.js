@@ -1,6 +1,7 @@
-const config = require('../config');
-const moment = require('moment');
-const postProvider = require('../providers/post');
+import moment from 'moment';
+
+import config from '../config';
+import postProvider from '../providers/post';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>

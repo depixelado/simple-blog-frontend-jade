@@ -1,4 +1,4 @@
-const sanatize = require('../utils/sanatize');
+import sanatize from '../utils/sanatize';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>

@@ -1,4 +1,4 @@
-const blogRequester = require('../services/blog-requester');
+import blogRequester from '../services/blog-requester';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>

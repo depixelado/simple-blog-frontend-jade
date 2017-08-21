@@ -1,24 +1,21 @@
 // Required packages
-const express = require('express');
-const helmet = require('helmet');
-const routes = require('./routes/routes');
-const pagination = require('./middlewares/pagination');
-
-// App config vars
-var config = require('./config');
+import express from 'express';
+import helmet from 'helmet';
+import routes from './routes/routes';
+import pagination from './middlewares/pagination';
 
 // Init express app
-var app = express();
+const app = express();
 
 // Specify views folder and view engine
-app.set('views', __dirname + '/views');
+app.set('views', `${__dirname}/views`);
 app.set('view engine', 'jade');
 
 // Protect the system with helmet
 app.use(helmet());
 
 // Define static routes
-app.use('/public', express.static(__dirname + '/public/'));
+app.use('/public', express.static(`${__dirname}/public/`));
 
 // Middlewares
 app.use(pagination);
