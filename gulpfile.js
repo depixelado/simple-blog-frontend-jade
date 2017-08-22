@@ -102,6 +102,20 @@ gulp.task('babel:watch', () =>
   )
 );
 
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function copy
+ * @description Copy necessary files for running into dist folder
+ */
+gulp.task('copy', () =>
+  gulp.src(
+    [
+      './src/views/**/*',
+    ]
+  )
+    .pipe(gulp.dest('./dist/views'))
+);
+
 gulp.task('run', () => 
   nodemon(
     {
@@ -117,10 +131,12 @@ gulp.task('run', () =>
  * @description Executes all required gulp task for development
  */
 gulp.task('dev', [
+  'copy',
   'sass',
   'sass:watch',
   'babel',
   'babel:watch',
+  'run',
 ]);
 
 /**
