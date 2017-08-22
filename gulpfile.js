@@ -1,6 +1,7 @@
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const gulp = require('gulp');
+const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 
@@ -20,7 +21,9 @@ gulp.task('clean', () =>
       force: true,
     }
   )
+    .pipe(plumber())
     .pipe(clean())
+    .pipe(plumber.stop())
 );
 
 /**
@@ -35,12 +38,15 @@ gulp.task('sass', () =>
     // Files to omit
     '!assets/scss/**/_*.scss',
   ])
+    .pipe(plumber())
     // Init sourcemaps
     .pipe(sourcemaps.init())
     // Process Sass files
     .pipe(sass())
     // Write sourcemaps
     .pipe(sourcemaps.write())
+    // Stop plumber
+    .pipe(plumber.stop())
     // Generated files destination source
     .pipe(gulp.dest('dist/public/css'))
 );
@@ -66,9 +72,11 @@ gulp.task('babel', () =>
       '!gulpfile.js',
     ]
   )
+    .pipe(plumber())
     .pipe(babel({
       presets: ['es2015'],
     }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest('dist'))
 );
 
