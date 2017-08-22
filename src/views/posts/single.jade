@@ -1,10 +1,13 @@
-mixin postExcerpt(post)
-  .post-snippet
-    h2.post-snippet__title
-      a(href='/posts/' + post._id)= post.title
-    p.post-snippet__body
+extend ../layout
+
+block content
+  .post-single
+    h1.post-single__title
+      = post.title
+    .post-single__content
       = post.body
-    p.post-snippet__metadata
+  
+    p.post-single__metadata
       span.post-snippet__author 
         strong Author: 
         a(href="#")

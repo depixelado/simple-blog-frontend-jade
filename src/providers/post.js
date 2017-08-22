@@ -20,3 +20,18 @@ exports.getPosts = function getPosts(page = 1, limit = 10) {
     },
   });
 };
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function getPost
+ * @public 
+ * @param {String} postId post Id
+ * @return {Promise}
+ * @description Get post by Id from API  
+ */
+exports.getPost = function getPost(postId) {
+  return blogRequester({
+    endPoint: `/posts/${postId}`,
+  });
+};
+
