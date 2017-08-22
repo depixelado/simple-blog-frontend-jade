@@ -1,6 +1,7 @@
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const gulp = require('gulp');
+const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
@@ -21,9 +22,10 @@ gulp.task('clean', () =>
       force: true,
     }
   )
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     .pipe(clean())
     .pipe(plumber.stop())
+    .pipe(notify('Dist folder deleted.'))
 );
 
 /**
@@ -38,7 +40,7 @@ gulp.task('sass', () =>
     // Files to omit
     '!assets/scss/**/_*.scss',
   ])
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     // Init sourcemaps
     .pipe(sourcemaps.init())
     // Process Sass files
@@ -49,6 +51,7 @@ gulp.task('sass', () =>
     .pipe(plumber.stop())
     // Generated files destination source
     .pipe(gulp.dest('dist/public/css'))
+    .pipe(notify('CSS generated.'))
 );
 
 /**
@@ -72,12 +75,13 @@ gulp.task('babel', () =>
       '!gulpfile.js',
     ]
   )
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     .pipe(babel({
       presets: ['es2015'],
     }))
     .pipe(plumber.stop())
     .pipe(gulp.dest('dist'))
+    .pipe(notify('JS transpiled.'))
 );
 
 /**
@@ -92,19 +96,26 @@ gulp.task('babel:watch', () =>
       '!gulpfile.js',
     ],
     [
-      'babel'
+      'babel',
     ]
   )
 );
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
- * @function default
- * @description Execute a list of tasks by default
+ * @function dev
+ * @description Executes all required gulp task for development
  */
-gulp.task('default', [
+gulp.task('dev', [
   'sass',
   'sass:watch',
   'babel',
-  'babel:watch'
+  'babel:watch',
 ]);
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function default
+ * @description Execute a list of tasks by default (Dev mode)
+ */
+gulp.task('default', ['dev']);
