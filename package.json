@@ -4,9 +4,10 @@
   "description": "Simple blog frontend with Jade",
   "main": "server.js",
   "scripts": {
+    "dev": "gulp dev",
+    "gulp": "gulp",
     "start": "nodemon dist/server.js",
-    "test": "mocha",
-    "gulp": "gulp"
+    "test": "mocha"
   },
   "keywords": [
     "simple",

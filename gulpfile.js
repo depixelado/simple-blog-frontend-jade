@@ -49,9 +49,9 @@ gulp.task('sass', () =>
     .pipe(sourcemaps.write())
     // Stop plumber
     .pipe(plumber.stop())
+    .pipe(notify({ message: 'CSS Generated', onLast: true }))
     // Generated files destination source
     .pipe(gulp.dest('dist/public/css'))
-    .pipe(notify('CSS generated.'))
 );
 
 /**
@@ -80,8 +80,8 @@ gulp.task('babel', () =>
       presets: ['es2015'],
     }))
     .pipe(plumber.stop())
+    .pipe(notify({ message: 'JS Transpiled', onLast: true }))
     .pipe(gulp.dest('dist'))
-    .pipe(notify('JS transpiled.'))
 );
 
 /**
