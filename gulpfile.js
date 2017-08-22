@@ -1,6 +1,7 @@
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const gulp = require('gulp');
+const nodemon = require('gulp-nodemon');
 const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
@@ -98,6 +99,15 @@ gulp.task('babel:watch', () =>
     [
       'babel',
     ]
+  )
+);
+
+gulp.task('run', () => 
+  nodemon(
+    {
+      script: 'dist/server.js',
+      ext: 'js jade',
+    }
   )
 );
 
