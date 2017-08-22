@@ -111,15 +111,22 @@ gulp.task('babel:watch', () =>
  * @function copy
  * @description Copy necessary files for running into dist folder
  */
-gulp.task('copy', () =>
+gulp.task('copy', () => {
   gulp.src(
     [
       './src/views/**/*',
     ]
   )
-    .pipe(gulp.dest('./dist/views'))
+    .pipe(gulp.dest('./dist/views'));
+
+  gulp.src(
+    [
+      './assets/img/**/*',
+    ]
+  )
+    .pipe(gulp.dest('./dist/public/img'))
     .pipe(notify({ message: 'Files copied', onLast: true }))
-);
+});
 
 
 /**
