@@ -41,7 +41,20 @@ gulp.task('sass', () =>
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function sass:watch
+ * @description Executes sass task when scss files are changed
+ */
+gulp.task('sass:watch', () =>
+  gulp.watch('assets/scss/**/*.scss', ['sass'])
+);
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function default
  * @description Execute a list of tasks by default
  */
-gulp.task('default', ['clean', 'sass']);
+gulp.task('default', [
+  'clean',
+  'sass',
+  'sass:watch',
+]);
