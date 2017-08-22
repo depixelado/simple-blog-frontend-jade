@@ -118,6 +118,24 @@ gulp.task('copy', () =>
     ]
   )
     .pipe(gulp.dest('./dist/views'))
+    .pipe(notify({ message: 'Files copied', onLast: true }))
+);
+
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function copy:watch
+ * @description Copy necessary files for running into dist folder when something change
+ */
+gulp.task('copy:watch', () =>
+  gulp.watch(
+    [
+      './src/views/**/*',
+    ],
+    [
+      'copy',
+    ]
+  )
 );
 
 gulp.task('run', () => 
@@ -136,6 +154,7 @@ gulp.task('run', () =>
  */
 gulp.task('dev', [
   'copy',
+  'copy:watch',
   'sass',
   'sass:watch',
   'babel',
