@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const clean = require('gulp-clean');
 
 /**
@@ -33,8 +34,12 @@ gulp.task('sass', () =>
     // Files to omit
     '!assets/scss/**/_*.scss',
   ])
+    // Init sourcemaps
+    .pipe(sourcemaps.init())
     // Process Sass files
     .pipe(sass())
+    // Write sourcemaps
+    .pipe(sourcemaps.write())
     // Generated files destination source
     .pipe(gulp.dest('dist/public/css'))
 );
