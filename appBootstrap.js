@@ -1,8 +1,9 @@
 // Required packages
 import express from 'express';
 import helmet from 'helmet';
-import routes from './routes/routes';
+
 import pagination from './middlewares/pagination';
+import routes from './routes/routes';
 
 // Init express app
 const app = express();

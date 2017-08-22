@@ -12,7 +12,7 @@ import postProvider from '../providers/post';
  * @description Prepare a post to be rendered
  */
 const preparePost = function preparePost(post) {
-  let p = Object.assign({}, post);
+  const p = Object.assign({}, post);
 
   p.createdAt = moment(p.createdAt).format(config.app.dateFormat);
   p.updatedAt = moment(p.updatedAt).format(config.app.dateFormat);
@@ -32,11 +32,11 @@ exports.home = function show(req, res) {
     .then((posts) => {
       res.render(
         'home',
-        { 
+        {
           title: 'Home',
           posts: posts.map(preparePost),
-        }
+        },
       );
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };

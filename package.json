@@ -4,10 +4,14 @@
   "description": "Simple blog frontend with Jade",
   "main": "server.js",
   "scripts": {
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "watch": "babel-watch ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && npm run watch && nodemon dist/server.js",
-    "test": "mocha"
+    "babel": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./public --copy-files",
+    "babel:watch": "rimraf babel-watch ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "nodemon dist/server.js",
+    "dev": "npm-run-all -s sass:build babel start -p babel:watch sass:watch",
+    "sass:build": "node-sass public/sass -o dist/public/css",
+    "sass:watch": "node-sass -w public/sass -o dist/public/css",
+    "test": "mocha",
+    "gulp": "gulp"
   },
   "keywords": [
     "simple",
@@ -36,7 +40,8 @@
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
-    "mocha": "^3.5.0",
-    "rimraf": "^2.6.1"
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "mocha": "^3.5.0"
   }
 }
