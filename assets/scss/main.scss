@@ -5,4 +5,8 @@
 @import 'bootstrap';
 
 // Layouts
+@import 'layouts/base';
 @import 'layouts/home';
+
+// Modules
+@import 'modules/post';

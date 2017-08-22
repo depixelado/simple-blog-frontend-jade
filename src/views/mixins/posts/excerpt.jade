@@ -1,13 +1,15 @@
 mixin postExcerpt(post)
   .post-snippet
-    h2.post-title
+    h2.post-snippet__title
       a(href="#")= post.title
-    p.post-body
+    p.post-snippet__body
       = post.body
-    p.posst-metadata
-      span.post-author
-        = 'Author: '
+    p.post-snippet__metadata
+      span.post-snippet__author 
+        strong Author: 
         a(href='#')
           = post.userId
-      span.post-date
-        = ' Date: ' + post.updatedAt
+      span.post-snippet__date
+        strong  Date: 
+        span
+          = post.updatedAt

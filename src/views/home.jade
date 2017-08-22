@@ -5,8 +5,10 @@ block content
   - each post in posts
     +postExcerpt(post)
 block sidebar
-  .widget
-    h3 Author
-    p
+  .widget.creator-about
+    h3.creator-about__title About the creator  
+    .creator.about__avatar
+      <img src="..." alt="Blog creator" class="rounded-circle">
+    p.creator-about__description
       | Daniel Jimenez
       | eleifend nibh porttitor. Ut in nulla enim.
