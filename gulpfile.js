@@ -45,7 +45,11 @@ gulp.task('sass', () =>
     // Init sourcemaps
     .pipe(sourcemaps.init())
     // Process Sass files
-    .pipe(sass())
+    .pipe(sass(
+      {
+        includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/']
+      }
+    ))
     // Write sourcemaps
     .pipe(sourcemaps.write())
     // Stop plumber
