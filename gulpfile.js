@@ -62,7 +62,7 @@ gulp.task('sass:watch', () =>
 gulp.task('babel', () =>
   gulp.src(
     [
-      './**/*.js',
+      './src/**/*.js',
       '!gulpfile.js',
     ]
   )
@@ -80,7 +80,7 @@ gulp.task('babel', () =>
 gulp.task('babel:watch', () =>
   gulp.watch(
     [
-      './**/*.js',
+      './src/**/*.js',
       '!gulpfile.js',
     ],
     [
