@@ -1,6 +1,11 @@
 import blogRequester from '../services/blog-requester';
 
 /**
+ * @var FULL_BODY Make getters return the whole body response insted of the data property
+ */
+exports.FULL_BODY = true;
+
+/**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function getPosts
  * @public 
@@ -9,8 +14,8 @@ import blogRequester from '../services/blog-requester';
  * @return {Promise}
  * @description Get posts from API  
  */
-exports.getPosts = function getPosts(page = 1, limit = 10) {
-  return blogRequester({
+exports.getPosts = function getPosts(page = 1, limit = 10, fullBody = false) {
+  const postPromise = blogRequester({
     endPoint: '/posts',
     options: {
       qs: {
@@ -19,6 +24,11 @@ exports.getPosts = function getPosts(page = 1, limit = 10) {
       },
     },
   });
+
+  if (fullBody === true) return postPromise;
+
+  return postPromise
+    .then(res => res.data);
 };
 
 /**
@@ -29,9 +39,14 @@ exports.getPosts = function getPosts(page = 1, limit = 10) {
  * @return {Promise}
  * @description Get post by Id from API  
  */
-exports.getPost = function getPost(postId) {
-  return blogRequester({
+exports.getPost = function getPost(postId, fullBody) {
+  const postPromise = blogRequester({
     endPoint: `/posts/${postId}`,
   });
+
+  if (fullBody === true) return postPromise;
+
+  return postPromise
+    .then(res => res.data);
 };
 
