@@ -29,11 +29,11 @@ const preparePost = function preparePost(post) {
 exports.show = function show(req, res) {
   // Get posts
   postProvider.getPost(req.params.postId)
-    .then((post) => {
+    .then((resBody) => {
       res.render(
         'posts/single',
         {
-          post: preparePost(post),
+          post: preparePost(resBody.data),
         },
       );
     })

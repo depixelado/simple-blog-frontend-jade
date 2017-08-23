@@ -29,12 +29,12 @@ const preparePost = function preparePost(post) {
 exports.home = function show(req, res) {
   // Get posts
   postProvider.getPosts(req.query.page, config.posts.limitPerPage)
-    .then((posts) => {
+    .then((resBody) => {
       res.render(
         'home',
         {
           title: 'Home',
-          posts: posts.map(preparePost),
+          posts: resBody.data.map(preparePost),
         },
       );
     })
