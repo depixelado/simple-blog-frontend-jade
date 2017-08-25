@@ -1,9 +1,11 @@
 extend layout
 include ./mixins/posts/excerpt.jade
+include ./mixins/pagination/basic.jade
 
 block content
   - each post in posts
     +postExcerpt(post)
+  +paginationBasic(pagination)
 block sidebar
   .widget.creator-about
     h3.creator-about__title About the creator  

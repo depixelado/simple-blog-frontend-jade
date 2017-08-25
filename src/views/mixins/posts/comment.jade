@@ -1,0 +1,12 @@
+mixin comment(comment)
+  .comment
+    h5.comment__author
+      a(href='/users/' + comment.userId) 
+        = comment.userId
+    p.comment__body
+      = comment.body
+    p.comment__metadata
+      span.comment__date
+        strong  Date: 
+        span
+          = comment.updatedAt

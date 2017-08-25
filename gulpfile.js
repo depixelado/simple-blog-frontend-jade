@@ -114,7 +114,7 @@ gulp.task('babel:watch', () =>
 gulp.task('copy', () => {
   gulp.src(
     [
-      './src/views/**/*',
+      './src/views/**/*.jade',
     ]
   )
     .pipe(gulp.dest('./dist/views'));

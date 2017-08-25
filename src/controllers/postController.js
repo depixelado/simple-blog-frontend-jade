@@ -16,6 +16,7 @@ const preparePost = function preparePost(post) {
 
   p.createdAt = moment(p.createdAt).format(config.app.dateFormat);
   p.updatedAt = moment(p.updatedAt).format(config.app.dateFormat);
+  p.excerpt = `${p.body.substr(0, 256)}...`;
 
   return p;
 };
@@ -33,7 +34,7 @@ exports.show = function show(req, res) {
       res.render(
         'posts/single',
         {
-          post: preparePost(post.data),
+          post: preparePost(post),
         },
       );
     })

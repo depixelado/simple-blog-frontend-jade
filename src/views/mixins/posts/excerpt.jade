@@ -3,7 +3,7 @@ mixin postExcerpt(post)
     h2.post-snippet__title
       a(href='/posts/' + post._id)= post.title
     p.post-snippet__body
-      = post.body
+      = post.excerpt
     p.post-snippet__metadata
       span.post-snippet__author 
         strong Author: 

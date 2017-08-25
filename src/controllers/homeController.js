@@ -16,6 +16,7 @@ const preparePost = function preparePost(post) {
 
   p.createdAt = moment(p.createdAt).format(config.app.dateFormat);
   p.updatedAt = moment(p.updatedAt).format(config.app.dateFormat);
+  p.excerpt = `${p.body.substr(0, 256)}...`;
 
   return p;
 };
@@ -28,13 +29,14 @@ const preparePost = function preparePost(post) {
  */
 exports.home = function show(req, res) {
   // Get posts
-  postProvider.getPosts(req.query.page, config.posts.limitPerPage)
-    .then((posts) => {
+  postProvider.getPosts(req.query.page, config.posts.limitPerPage, postProvider.FULL_BODY)
+    .then((postResponse) => {
       res.render(
         'home',
         {
           title: 'Home',
-          posts: posts.map(preparePost),
+          pagination: postResponse.pagination,
+          posts: postResponse.data.map(preparePost),
         },
       );
     })

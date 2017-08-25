@@ -1,0 +1,21 @@
+mixin paginationBasic(pagination)
+  - var totalPages = Math.ceil(pagination.totalItems / pagination.itemsPerPage);
+  - var itemClasses;
+  - var previousPage = (parseInt(pagination.page) - 1 > 0) ? parseInt(pagination.page) - 1 : 1;
+  - var nextPage = (parseInt(pagination.page) + 1 <  totalPages) ? parseInt(pagination.page) + 1 : totalPages;
+  - var previousPageLinkClasses = (pagination.page == previousPage) ? 'disabled' : 'fius';
+  - var nextPageLinkClasses = (pagination.page == nextPage) ? 'disabled' : '';
+
+  nav.pagination-container(aria-label="Page navigation")
+    ul.pagination
+      li(class=previousPageLinkClasses)
+        a(href=`?page=${previousPage}`, aria-label="Previous")
+          span(aria-hidden="true") &laquo;
+      - for (var page = 1; page <= totalPages; page++)
+        - itemClasses = (pagination.page == page) ? 'active': '';
+        li(class=itemClasses)
+          a(href=`?page=${page}`)
+            = page
+      li(class=nextPageLinkClasses)
+        a(href=`?page=${nextPage}`, aria-label="Next")
+          span(aria-hidden="true") &raquo;

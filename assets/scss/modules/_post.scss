@@ -1,5 +1,14 @@
-.post-snippet {
+.post-snippet, .post-single {
   padding-bottom: 10px;
   border-bottom: 1px dotted #ddd;
   margin-bottom: 40px;
+
+  &__metadata {
+    margin-top: 10px;
+  }
+
+  &__author {
+    display: inline-block;
+    margin-right: 10px;
+  }
 }

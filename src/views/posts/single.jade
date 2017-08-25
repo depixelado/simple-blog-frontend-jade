@@ -1,12 +1,13 @@
 extend ../layout
 
+include ../mixins/posts/comment.jade
+
 block content
   .post-single
     h1.post-single__title
       = post.title
     .post-single__content
       = post.body
-  
     p.post-single__metadata
       span.post-snippet__author 
         strong Author: 
@@ -16,3 +17,7 @@ block content
         strong  Date: 
         span
           = post.updatedAt
+  .comment-list
+    h3 Comment List
+    - each comment in post.comments
+      +comment(comment)
