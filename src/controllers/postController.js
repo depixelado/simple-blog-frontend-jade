@@ -23,7 +23,7 @@ const preparePost = function preparePost(post) {
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
- * @function show`
+ * @function show
  * @param {Object} req Request object
  * @param {Object} res Response object
  */
@@ -39,4 +39,24 @@ exports.show = function show(req, res) {
       );
     })
     .catch(error => console.log(error));
+};
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function show
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ */
+exports.storeComment = function storeComment(req, res) {
+  const postId = req.params.postId;
+  const commentBody = req.body.body;
+
+  postProvider.storeComment(
+    postId,
+    {
+      body: commentBody,
+    },
+  )
+    .then(() => res.redirect(301, `/posts/${postId}?storeComment=success`))
+    .catch(() => res.redirect(400, `/posts/${postId}?storeComment=error`));
 };

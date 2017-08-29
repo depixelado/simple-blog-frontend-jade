@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import request from 'request-promise-native';
 
 module.exports = function RequesterFactory(defaultOptions) {
@@ -6,14 +7,13 @@ module.exports = function RequesterFactory(defaultOptions) {
     const uri = endPoint;
 
     // Build request options
-    const requestOptions = Object.assign(
+    const requestOptions = _.merge(
       {},
       defaultOptions,
+      options,
       {
         uri,
-        qs: options.qs,
       },
-      options,
     );
 
     // Generate autentication header value

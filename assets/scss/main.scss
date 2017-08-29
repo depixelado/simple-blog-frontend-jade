@@ -8,6 +8,9 @@
 @import 'layouts/base';
 @import 'layouts/home';
 
+// -- Posts
+@import 'layouts/posts/single';
+
 // Modules
 @import 'modules/post';
 @import 'modules/comment';

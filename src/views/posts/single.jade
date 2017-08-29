@@ -21,3 +21,7 @@ block content
     h3 Comment List
     - each comment in post.comments
       +comment(comment)
+
+   .comment-form-container 
+    h3 Add Comment
+    include commentForm.jade
