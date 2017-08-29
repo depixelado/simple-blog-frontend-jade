@@ -5,11 +5,10 @@ html
     link(href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i", rel="stylesheet")
     link(rel='stylesheet', href='/public/css/main.css')
   body
+    include navbar/navbar.jade
     .main-wrapper
       .container
         .col-md-8.main-content
-          header
-            h1: a(href="/") Simple blog
           block content
         .col-md-4.sidebar
           block sidebar
