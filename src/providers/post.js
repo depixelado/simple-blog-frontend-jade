@@ -59,7 +59,7 @@ exports.getPost = function getPost(postId, fullBody) {
  * @return {Promise}
  * @description Get post by Id from API  
  */
-exports.storeComment = function storeComment(postId, comment, fullBody = false) {
+exports.storeComment = function storeComment(postId, comment) {
   const commentPromise = blogRequester({
     endPoint: `/posts/${postId}/comments`,
     options: {
@@ -73,8 +73,6 @@ exports.storeComment = function storeComment(postId, comment, fullBody = false) 
     },
   });
 
-  if (fullBody === true) return commentPromise;
-
-  return commentPromise
-    .then(res => res.data);
+  return commentPromise;
 };
+
