@@ -43,6 +43,18 @@ exports.show = function show(req, res) {
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function create
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ */
+exports.create = function create(req, res) {
+  res.render(
+    'posts/create',
+  );
+};
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function show
  * @param {Object} req Request object
  * @param {Object} res Response object

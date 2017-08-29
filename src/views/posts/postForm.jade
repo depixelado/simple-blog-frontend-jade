@@ -1,0 +1,7 @@
+form.post-form(action="/posts", method="post")
+  .form-group
+    input#post-title.form-control(name="title", placeholder="Post title")
+  .form-group
+    textarea#post-body.form-control(name="body", rows="20", placeholder="Post body")
+  .form-group
+    input.btn.btn-primary(type="submit")

@@ -8,6 +8,7 @@ const router = express.Router();
 router.use('/favicon.ico', (req, res) => res.end());
 
 /** Posts */
+router.get('/posts/create', postController.create);
 router.get('/posts/:postId', postController.show);
 router.post('/posts/:postId/comment', postController.storeComment);
 
