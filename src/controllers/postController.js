@@ -5,6 +5,27 @@ import postProvider from '../providers/post';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function prepareDates
+ * @private
+ * @param {Object} resource Resource to be prepared
+ * @return {Object} Resource with transformed dates
+ * @description Prepare recource dates
+ */
+const prepareDates = function prepareDates(resource) {
+  return Object.assign(
+    {},
+    resource,
+
+    // Give proper format to dates
+    {
+      createdAt: moment(resource.createdAt).format(config.app.dateFormat),
+      updatedAt: moment(resource.updatedAt).format(config.app.dateFormat),
+    },
+  );
+};
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function preparePost
  * @private
  * @param {Object} post Post to be prepared
@@ -12,13 +33,21 @@ import postProvider from '../providers/post';
  * @description Prepare a post to be rendered
  */
 const preparePost = function preparePost(post) {
-  const p = Object.assign({}, post);
+  return Object.assign(
+    {},
+    // Preare dates
+    prepareDates(post),
 
-  p.createdAt = moment(p.createdAt).format(config.app.dateFormat);
-  p.updatedAt = moment(p.updatedAt).format(config.app.dateFormat);
-  p.excerpt = `${p.body.substr(0, 256)}...`;
+    // Generate excerpt
+    {
+      excerpt: `${post.body.substr(0, 256)}...`,
+    },
 
-  return p;
+    // Prepare comment dates
+    {
+      comments: post.comments.map(comment => prepareDates(comment)),
+    },
+  );
 };
 
 /**

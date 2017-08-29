@@ -5,6 +5,16 @@ import blogRequester from '../services/blog-requester';
  */
 exports.FULL_BODY = true;
 
+const getResourceFromResponse = function getResourceFromResponse(
+  resourcePromise,
+  fullBody,
+) {
+  if (fullBody === true) return resourcePromise;
+
+  return resourcePromise
+    .then(res => res.data);
+};
+
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function getPosts
@@ -25,10 +35,7 @@ exports.getPosts = function getPosts(page = 1, limit = 10, fullBody = false) {
     },
   });
 
-  if (fullBody === true) return postPromise;
-
-  return postPromise
-    .then(res => res.data);
+  return getResourceFromResponse(postPromise, fullBody);
 };
 
 /**
@@ -44,10 +51,7 @@ exports.getPost = function getPost(postId, fullBody) {
     endPoint: `/posts/${postId}`,
   });
 
-  if (fullBody === true) return postPromise;
-
-  return postPromise
-    .then(res => res.data);
+  return getResourceFromResponse(postPromise, fullBody);
 };
 
 /**
@@ -71,10 +75,7 @@ exports.storePost = function storePost(post, fullBody) {
     },
   });
 
-  if (fullBody === true) return postPromise;
-
-  return postPromise
-    .then(res => res.data);
+  return getResourceFromResponse(postPromise, fullBody);
 };
 
 
@@ -103,4 +104,3 @@ exports.storeComment = function storeComment(postId, comment) {
 
   return commentPromise;
 };
-
