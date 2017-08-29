@@ -52,12 +52,40 @@ exports.getPost = function getPost(postId, fullBody) {
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function storePost
+ * @public 
+ * @param {String} postId post Id where the comment will be add to
+ * @param {Object} comment Comment object to be stored
+ * @return {Promise}
+ * @description Store a comment on the DB
+ */
+exports.storePost = function storePost(post, fullBody) {
+  const postPromise = blogRequester({
+    endPoint: '/posts',
+    options: {
+      method: 'POST',
+      headers: {
+        ContentType: 'application/json',
+      },
+      body: post,
+    },
+  });
+
+  if (fullBody === true) return postPromise;
+
+  return postPromise
+    .then(res => res.data);
+};
+
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function storeComment
  * @public 
  * @param {String} postId post Id where the comment will be add to
  * @param {Object} comment Comment object to be stored
  * @return {Promise}
- * @description Get post by Id from API  
+ * @description Store a comment on the DB
  */
 exports.storeComment = function storeComment(postId, comment) {
   const commentPromise = blogRequester({

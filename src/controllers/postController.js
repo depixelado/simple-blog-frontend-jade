@@ -55,6 +55,23 @@ exports.create = function create(req, res) {
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function store
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ */
+exports.store = function store(req, res) {
+  postProvider.storePost(
+    {
+      title: req.body.title,
+      body: req.body.body,
+    },
+  )
+    .then(post => res.redirect(301, `/posts/${post._id}`))
+    .catch(() => res.redirect(400, '/posts'));
+};
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
  * @function show
  * @param {Object} req Request object
  * @param {Object} res Response object
