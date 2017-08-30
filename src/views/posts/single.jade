@@ -17,6 +17,10 @@ block content
         strong  Date: 
         span
           = post.updatedAt
+      span.post-snippet__comments
+        strong  Comments: 
+        span
+          = post.comments.length
   .comment-list
     h3 Comment List
     - each comment in post.comments

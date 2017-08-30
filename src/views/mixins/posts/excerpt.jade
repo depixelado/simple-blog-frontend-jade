@@ -13,3 +13,7 @@ mixin postExcerpt(post)
         strong  Date: 
         span
           = post.updatedAt
+      span.post-snippet__comments
+        strong  Comments: 
+        span
+          = post.comments.length
