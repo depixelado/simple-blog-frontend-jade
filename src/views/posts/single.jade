@@ -29,3 +29,20 @@ block content
    .comment-form-container 
     h3 Add Comment
     include commentForm.jade
+  
+block sidebar
+  .author-card
+    h3.author-card__title About the author
+    img.author-card__avatar.pull-left.img-circle(src="http://localhost:3000/avatars/" + user.avatar)
+    .author-card__username
+      a(href=`/users/${user._id}`)
+        = user._id
+    .author-card__email
+      a(href=`mailto:${user.email}`)
+        = user.email
+    .clearfix
+    .author-card__description
+      h4 Bios
+      = user.description
+
+  

@@ -2,6 +2,7 @@ import moment from 'moment';
 
 import config from '../config';
 import postProvider from '../providers/post';
+import userProvider from '../providers/user';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
@@ -57,13 +58,22 @@ const preparePost = function preparePost(post) {
  * @param {Object} res Response object
  */
 exports.show = function show(req, res) {
-  // Get posts
-  postProvider.getPost(req.params.postId)
-    .then((post) => {
+  const postPromise = postProvider.getPost(req.params.postId)
+    .catch(error => console.log(error));
+
+  const userPromise = postPromise
+    .then(post => userProvider.getUser(post.userId));
+
+  Promise.all([
+    postPromise,
+    userPromise,
+  ])
+    .then(([post, user]) => {
       res.render(
         'posts/single',
         {
           post: preparePost(post),
+          user: prepareDates(user),
         },
       );
     })
