@@ -2,10 +2,13 @@ extend ../layout
 
 block content
   .user-single
+    img.user-single__avatar.img-circle.pull-left(src='http://localhost:3000/avatars/' + user.avatar)
     h1.user-single__username
       = user._id
-      small
+      small.user-single__email
         a(href=`mailto:${user.email}`) 
-          = `(${user.email})`
+          = user.email
+    .clearfix
     .user-single__description
       = user.description
+  

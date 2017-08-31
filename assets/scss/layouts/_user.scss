@@ -1,0 +1,17 @@
+.user-single {
+  &__avatar {
+    margin-right: 20px;
+  }
+
+  &__username {
+    padding-top: 20px;
+  }
+
+  &__email {
+    display: block;
+  }
+
+  &__description {
+    margin-top: 20px;
+  }
+}
