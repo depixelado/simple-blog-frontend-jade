@@ -7,7 +7,7 @@ mixin postExcerpt(post)
     p.post-snippet__metadata
       span.post-snippet__author 
         strong Author: 
-        a(href="#")
+        a(href=`/users/${post.userId}`)
           = post.userId
       span.post-snippet__date
         strong  Date: 

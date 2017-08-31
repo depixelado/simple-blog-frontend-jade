@@ -1,11 +1,11 @@
 mixin comment(comment)
   .comment
-    h5.comment__author
-      a(href='/users/' + comment.userId) 
-        = comment.userId
     p.comment__body
       = comment.body
     p.comment__metadata
+      img.img-circle.comment__avatar(src='http://localhost:3000/avatars/' + comment.userId + '.jpg')
+      a(href='/users/' + comment.userId) 
+        = comment.userId
       span.comment__date
         strong  Date: 
         span

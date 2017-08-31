@@ -1,6 +1,7 @@
 import express from 'express';
 import homeController from '../controllers/homeController';
 import postController from '../controllers/postController';
+import userController from '../controllers/userController';
 
 const router = express.Router();
 
@@ -13,6 +14,9 @@ router.get('/posts/:postId', postController.show);
 
 router.post('/posts', postController.store);
 router.post('/posts/:postId/comment', postController.storeComment);
+
+/** Users */
+router.get('/users/:userId', userController.show);
 
 /* Home */
 router.use('/', homeController.home);

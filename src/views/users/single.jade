@@ -1,0 +1,11 @@
+extend ../layout
+
+block content
+  .user-single
+    h1.user-single__username
+      = user._id
+      small
+        a(href=`mailto:${user.email}`) 
+          = `(${user.email})`
+    .user-single__description
+      = user.description

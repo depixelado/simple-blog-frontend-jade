@@ -26,7 +26,7 @@ const getResourceFromResponse = function getResourceFromResponse(
  */
 exports.getPosts = function getPosts(page = 1, limit = 10, fullBody = false) {
   const postPromise = blogRequester({
-    endPoint: '/posts',
+    endPoint: '/posts?sort=-updatedAt',
     options: {
       qs: {
         page,
