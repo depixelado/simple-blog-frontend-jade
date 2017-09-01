@@ -73,5 +73,8 @@ exports.authenticate = function authenticate(req, res) {
       req.session.user = user;
       res.redirect('/');
     })
-    .catch(() => res.redirect('/login?error=true'));
+    .catch(() => {
+      req.session.reset();
+      res.redirect('/login?error=true');
+    });
 };

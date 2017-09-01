@@ -1,3 +1,15 @@
 .navbar-button {
   margin-top: 8px;
 }
+
+.navbar {
+  &__user-link {
+    text-transform: capitalize;
+  }
+
+  &__avatar {
+    width: 24px;
+    height: auto;
+    margin-right: 5px;
+  }
+}

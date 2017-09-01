@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import session from 'client-sessions';
 
 import pagination from './middlewares/pagination';
+import templateGlobals from './middlewares/templateGlobals';
 import routes from './routes/routes';
 import config from './config';
 
@@ -33,6 +34,7 @@ app.use(session({
 }));
 
 // Middlewares
+app.use(templateGlobals);
 app.use(pagination);
 
 // Register routes

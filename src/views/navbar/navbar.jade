@@ -5,7 +5,14 @@ nav.navbar.navbar-default
         a.navbar-brand(href="/") Simple blog
       .collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
-          li
+          if (session.user._id)
+            li
+              a.navbar__user-link(href=`/users/${session.user._id}`)
+                img.img-circle.navbar__avatar(src='http://localhost:3000/avatars/' + session.user._id + '.jpg') 
+                = session.user._id
+            li
+              a(href="/logout") Log out
+          else
             a(href="/login") Log In
           li
             p.navbar-button
