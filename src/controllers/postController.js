@@ -1,8 +1,6 @@
 import moment from 'moment';
 
 import config from '../config';
-import postProvider from '../providers/post';
-import userProvider from '../providers/user';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
@@ -58,11 +56,11 @@ const preparePost = function preparePost(post) {
  * @param {Object} res Response object
  */
 exports.show = function show(req, res) {
-  const postPromise = postProvider.getPost(req.params.postId)
+  const postPromise = req.services.postProvider.getPost(req.params.postId)
     .catch(error => console.log(error));
 
   const userPromise = postPromise
-    .then(post => userProvider.getUser(post.userId));
+    .then(post => req.services.userProvider.getUser(post.userId));
 
   Promise.all([
     postPromise,
@@ -99,7 +97,7 @@ exports.create = function create(req, res) {
  * @param {Object} res Response object
  */
 exports.store = function store(req, res) {
-  postProvider.storePost(
+  req.services.postProvider.storePost(
     {
       title: req.body.title,
       body: req.body.body,
@@ -119,12 +117,15 @@ exports.storeComment = function storeComment(req, res) {
   const postId = req.params.postId;
   const commentBody = req.body.body;
 
-  postProvider.storeComment(
+  req.services.postProvider.storeComment(
     postId,
     {
       body: commentBody,
     },
   )
     .then(() => res.redirect(301, `/posts/${postId}?storeComment=success`))
-    .catch(() => res.redirect(400, `/posts/${postId}?storeComment=error`));
+    .catch((error) => {
+      console.log('hit', error);
+      res.redirect(400, `/posts/${postId}?storeComment=error`)
+    });
 };

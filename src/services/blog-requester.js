@@ -13,11 +13,11 @@ const generateBasicAuthHeaderValue = function generateBasicAuthHeaderValue(usern
 };
 
 /** Blog Api Requester */
-const blogApiRequester = requesterFactory({
+const blogApiRequester = (username, password) => requesterFactory({
   json: true,
   baseUrl: config.blogApi.baseUrl, // Blog api base URL
   headers: {
-    Authorization: generateBasicAuthHeaderValue(config.blogApi.user, config.blogApi.password),
+    Authorization: generateBasicAuthHeaderValue(username, password),
   },
 });
 

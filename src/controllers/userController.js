@@ -1,7 +1,5 @@
 import moment from 'moment';
-
 import config from '../config';
-import userProvider from '../providers/user';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
@@ -32,7 +30,7 @@ const prepareDates = function prepareDates(resource) {
  */
 exports.show = function show(req, res) {
   // Get posts
-  userProvider.getUser(req.params.userId)
+  req.services.userProvider.getUser(req.params.userId)
     .then((user) => {
       res.render(
         'users/single',
@@ -68,9 +66,10 @@ exports.authenticate = function authenticate(req, res) {
     password,
   } = req.body;
 
-  userProvider.auth(username, password)
+  req.services.userProvider.auth(username, password)
     .then((user) => {
       req.session.user = user;
+      req.session.user.password = password;
       res.redirect('/');
     })
     .catch(() => {

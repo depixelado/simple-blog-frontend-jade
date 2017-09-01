@@ -4,10 +4,11 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import session from 'client-sessions';
 
-import pagination from './middlewares/pagination';
-import templateGlobals from './middlewares/templateGlobals';
-import routes from './routes/routes';
 import config from './config';
+import pagination from './middlewares/pagination';
+import routes from './routes/routes';
+import services from './middlewares/services';
+import templateGlobals from './middlewares/templateGlobals';
 
 // Init express app
 const app = express();
@@ -34,6 +35,7 @@ app.use(session({
 }));
 
 // Middlewares
+app.use(services);
 app.use(templateGlobals);
 app.use(pagination);
 

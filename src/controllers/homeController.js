@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 import config from '../config';
-import postProvider from '../providers/post';
 
 /**
  * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
@@ -29,7 +28,10 @@ const preparePost = function preparePost(post) {
  */
 exports.home = function show(req, res) {
   // Get posts
-  postProvider.getPosts(req.query.page, config.posts.limitPerPage, postProvider.FULL_BODY)
+  req.services.postProvider.getPosts(
+    req.query.page, config.posts.limitPerPage,
+    req.services.postProvider.FULL_BODY,
+  )
     .then((postResponse) => {
       res.render(
         'home',
