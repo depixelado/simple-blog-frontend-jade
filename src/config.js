@@ -8,6 +8,8 @@ dotenv.load();
 const config = {
   app: {
     port: env.PORT || 3030,
+    secretWord: env.SECRET_WORD || 'A_SECRET_WORD',
+    sessionDuration: env.SESSION_DURATION || 30 * 60 * 1000,
     dateFormat: 'D-mm-Y',
   },
   posts: {

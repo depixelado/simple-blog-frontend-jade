@@ -16,6 +16,9 @@ router.post('/posts', postController.store);
 router.post('/posts/:postId/comment', postController.storeComment);
 
 /** Users */
+router.get('/login', userController.login);
+router.post('/login', userController.authenticate);
+
 router.get('/users/:userId', userController.show);
 
 /* Home */

@@ -43,3 +43,35 @@ exports.show = function show(req, res) {
     })
     .catch(error => console.log(error));
 };
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function login
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @description Serves login form page
+ */
+exports.login = function login(req, res) {
+  res.render('login');
+};
+
+/**
+ * @author Daniel Jimenez <jimenezdaniel87@gmail.com>
+ * @function authenticate
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @description Authenticate users against API
+ */
+exports.authenticate = function authenticate(req, res) {
+  const {
+    username,
+    password,
+  } = req.body;
+
+  userProvider.auth(username, password)
+    .then((user) => {
+      req.session.user = user;
+      res.redirect('/');
+    })
+    .catch(() => res.redirect('/login?error=true'));
+};
